@@ -12,10 +12,10 @@ app.use(express.urlencoded({extended: true}));
 
 app.use("/api/v1", v1Routes);
 
-app.use(express.static(path.join(__dirname, "public")));
+/* app.use(express.static(path.join(__dirname, "public")));
 app.use("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))
-});
+}); */
 
 
 app.listen(PORT, async () => {

@@ -14,7 +14,12 @@ const createBiodata = (req, res) => {
             if (err) {
                 return res.status(500).json({error: err, success: false});
             }
-            const validatedData = biodataSchema.parse(req.body);
+            const validatedData = biodataSchema.safeParse(req.body);
+            if (!validatedData.success) {
+                return res.status(400).json({
+                    err: `Error in ${validatedData.error.issues[0].path} input field`
+                });
+            }
             let resume_name;
             let image_name;
             const files = req.files;
@@ -30,10 +35,10 @@ const createBiodata = (req, res) => {
                 return res.status(400).json({error: "all files are mandatory"});
             }
             // storing the files name inside DB, so that we can retrive later on when needed
-            validatedData.resume = resume_name;
-            validatedData.image = image_name;
+            validatedData.data.resume = resume_name;
+            validatedData.data.image = image_name;
 
-            const response = await biodataRepo.create(validatedData);
+            const response = await biodataRepo.create(validatedData.data);
             return res.status(201).json({ 
                 success: true, 
                 message: "Successfully submitted your candidature form"

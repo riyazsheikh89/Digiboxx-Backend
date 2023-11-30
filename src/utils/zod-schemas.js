@@ -19,7 +19,7 @@ const biodataSchema = z.object({
     first_name: z.string().min(2).max(30),
     last_name: z.string().min(2).max(30),
     email: z.string().email(),
-    college: z.string().min(10).max(100),
+    college: z.string().min().max(100),
     degree: z.string(),
     stream: z.string(),
     starting_year: z.string().min(4).max(4),
