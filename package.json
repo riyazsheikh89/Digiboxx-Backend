@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "prod": "cd ../frontend && npm run build && rm -rf ../backend/src/public && mkdir -p ../backend/src/public && mv ./dist/* ../backend/src/public && cd ../backend/src && node index.js"
+    "deploy": "cd ../Digiboxx-Frontend && npm run build && rm -rf ../Digiboxx-Backend/src/public && mkdir -p ../Digiboxx-Backend/src/public && mv ./dist/* ../Digiboxx-Backend/src/public && cd ../Digiboxx-Backend && npm start"
   },
   "author": "",
   "license": "ISC",
